@@ -1,5 +1,6 @@
 from rest_framework import mixins,viewsets
-from rest_framework.views import APIView
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status
@@ -10,6 +11,9 @@ from . models import Blog, Comment, Reply
 
 #   # To get all blog post and individual post
 class BlogPostViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
     

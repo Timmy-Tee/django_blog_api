@@ -2,6 +2,7 @@ from django.urls import path, include
 from .views import BlogPostViewSet, CreateBlogComment, CreateBlogPostViewSet, GetSingleBlogCommentViewSet, CreateCommentReplyViewSet
 from rest_framework.routers import DefaultRouter
 
+
 router = DefaultRouter()
 router.register(r'blog', BlogPostViewSet, basename='home')
 router.register(r'create_blog', CreateBlogPostViewSet, basename='create_blog')
